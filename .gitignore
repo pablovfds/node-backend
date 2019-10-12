@@ -59,5 +59,8 @@ typings/
 
 # next.js build output
 .next
+<<<<<<< HEAD
 
 *.http
+=======
+>>>>>>> 7c1785ab7db8bf90c0e5e969b2dd5105ca8ceaf5
