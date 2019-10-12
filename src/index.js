@@ -5,10 +5,14 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const postsRoute = require('./routes/posts');
+const authRoute = require('./routes/auth');
 
-// Middleware
+// Middlewares
 app.use(express.json());
-app.use(cors);
-app.use(postsRoute);
+// app.use(cors);
 
-app.listen(process.env.PORT)
+// Route Middlewares
+app.use(postsRoute);
+app.use(authRoute);
+
+app.listen(process.env.PORT, () => console.log("Listening on 3000"))

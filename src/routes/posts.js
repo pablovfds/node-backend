@@ -1,8 +1,8 @@
-const express = require('express');
+const router = require('express').Router();
+const verifyToken = require('./verifyToken')
 const Post = require('../models/Post');
-const router = express.Router();
 
-router.get('/posts', async (req, res) => {
+router.get('/posts', verifyToken, async (req, res) => {
     try {
         const posts = await Post.find();
         res.json(posts);
@@ -11,7 +11,7 @@ router.get('/posts', async (req, res) => {
     }
 });
 
-router.post('/posts', async (req, res) => {
+router.post('/posts', verifyToken, async (req, res) => {
     try {
         const post = await Post.create(req.body);
         res.json(post);
@@ -20,7 +20,7 @@ router.post('/posts', async (req, res) => {
     }
 });
 
-router.get('/posts/:id', async (req, res) => {    
+router.get('/posts/:id', verifyToken, async (req, res) => {    
     try {
         const post = await Post.findById(req.params.id);
         res.json(post);
@@ -29,7 +29,7 @@ router.get('/posts/:id', async (req, res) => {
     }
 });
 
-router.delete('/posts/:id', async (req, res) => {
+router.delete('/posts/:id', verifyToken, async (req, res) => {
     
     try {
         await Post.findByIdAndRemove(req.params.id);
@@ -39,7 +39,7 @@ router.delete('/posts/:id', async (req, res) => {
     }
 });
 
-router.patch('/posts/:id', async (req, res) => {
+router.patch('/posts/:id', verifyToken, async (req, res) => {
     
     postSet = {};
 
